@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="110dp"
+    android:background="@drawable/recyclerview_shape"
+    android:id="@+id/notReturned_parent_layout"
+    android:layout_marginBottom="15dp"
+    android:layout_centerHorizontal="true"
+    android:backgroundTint="@color/darkGrey"
+    android:paddingRight="10dp">
+
+    <ImageView
+        android:id="@+id/bookcover_listview"
+        android:layout_width="109dp"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/example_book_cover" />
+
+    <TextView
+        android:id="@+id/bookname_listview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="@string/book_title"
+        android:layout_toRightOf="@id/bookcover_listview"
+        android:textSize="15sp"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="sans-serif-light"/>
+
+    <TextView
+        android:id="@+id/bookauthor_listview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookname_listview"
+        android:layout_toRightOf="@id/bookcover_listview"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/author_color"
+        android:text="Zora Hurston"/>
+
+
+    <ImageView
+        android:id="@+id/delete_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="Delete"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:padding="2dp"
+        android:background="@drawable/trash" />
+
+
+    <ImageView
+        android:id="@+id/add_to_returned_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="Add to Returned"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_toLeftOf="@id/delete_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:padding="2dp"
+        android:background="@drawable/add_circle"
+        android:backgroundTint="@color/green"/>
+
+
+</RelativeLayout>

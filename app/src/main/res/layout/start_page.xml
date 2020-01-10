@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/book_bgg">
+
+    <TextView
+        android:id="@+id/startpage_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BookMate"
+        android:textColor="@color/themeColor"
+        android:textSize="65sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="45dp"/>
+
+    <TextView
+        android:id="@+id/blurb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-Never lose track of your books"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/startpage_title"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/book_cover_example"
+        android:layout_below="@id/blurb"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:text="Start"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/themeColor"
+        android:background="@drawable/start_shape"
+        android:layout_below="@id/blurb"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="340dp"/>
+
+
+
+</RelativeLayout>

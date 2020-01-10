@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScanResult"
+    android:background="@color/greennn">
+
+    <RelativeLayout
+        android:id="@+id/title_parent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/darkGrey"
+        android:paddingLeft="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/themeColor"
+            android:text="Book Info"
+            android:textSize="20sp"/>
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_arrow_back_black_24dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/book_Cover"
+        android:layout_width="166dp"
+        android:layout_height="270dp"
+        android:src="@drawable/test_cover"
+        android:layout_below="@id/title_parent"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:id="@+id/title_author_BOX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_Cover"
+        android:layout_centerHorizontal="true">
+
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Their Eyes Were Watching God"
+        android:textSize="20sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zora Hurston"
+        android:textColor="@color/author_color"
+        android:layout_below="@id/book_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_below="@id/title_author_BOX"
+        android:id="@+id/prompt_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Book to..."
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prompt_user"
+        android:layout_marginTop="20dp">
+
+    <Button
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/decision_shape"
+        android:backgroundTint="@color/red"
+        android:text="Not Returned"
+        android:textColor="@color/white"
+        android:layout_marginLeft="50dp"/>
+
+        <Button
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:background="@drawable/decision_shape"
+            android:backgroundTint="@color/green"
+            android:text="Returned"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="50dp"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
