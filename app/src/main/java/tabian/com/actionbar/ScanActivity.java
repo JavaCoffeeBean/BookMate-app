@@ -78,4 +78,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        scannerView = (ZXingScannerView) findViewById(R.id.zxscan);
+        txtResult = (TextView) findViewById(R.id.txt_result);
+
+        scannerView.setResultHandler(ScanActivity.this);
+        scannerView.startCamera();
+    }
 }
