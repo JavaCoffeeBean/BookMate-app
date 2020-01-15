@@ -61,4 +61,8 @@ public class Tab1Fragment extends Fragment {
         lstBook.add(new Book("Julius Cesar","Shakespear",R.drawable.jc,R.drawable.trash,R.drawable.add_circle_red));
 
     }
+
+    public List<Book> getLstBook() {
+        return lstBook;
+    }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 
 
 public class ScanResult extends AppCompatActivity {
@@ -29,6 +31,8 @@ public class ScanResult extends AppCompatActivity {
     private String cover_art;
     private ImageView book_cover;
     private RequestQueue mQueue;
+    private Button add_returned;
+    private Button add_not_returned;
 
     private static final String TAG = "MainActivity";
 
@@ -40,6 +44,8 @@ public class ScanResult extends AppCompatActivity {
         book_title = findViewById(R.id.book_title);
         book_author = findViewById(R.id.author);
         book_cover = findViewById(R.id.book_Cover);
+        add_returned = findViewById(R.id.returned_BUTTON);
+        add_not_returned = findViewById(R.id.not_returned_BUTTON);
 
         mQueue = Volley.newRequestQueue(this);
 
@@ -48,6 +54,15 @@ public class ScanResult extends AppCompatActivity {
         jsonParse();
 
 
+
+    }
+
+    public void addBook(int position) {
+        position = 0;
+        Tab1Fragment tab1Fragment = new Tab1Fragment();
+
+        tab1Fragment.getLstBook().add(position, new Book("Richard III","Shakespear",R.drawable.test_cover,R.drawable.trash,R.drawable.add_circle_red));
+        tab1Fragment.getLstBook().notifyItemInserted();
 
     }
 
@@ -64,6 +79,8 @@ public class ScanResult extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("items");
+
+
 
 
                             /*for (int i = 0; i < jsonArray.length(); i++) {
