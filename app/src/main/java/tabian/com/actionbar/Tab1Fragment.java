@@ -22,7 +22,8 @@ public class Tab1Fragment extends Fragment {
 
     View v;
     private RecyclerView myreturned_recyclerview;
-    private List<Book> lstBook;
+    static List<Book> lstBook;
+    static RecyclerViewAdapter recyclerViewAdapter;
 
     public Tab1Fragment() {
     }
@@ -33,7 +34,7 @@ public class Tab1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment2_layout,container,false);
 
         myreturned_recyclerview = view.findViewById(R.id.returned_recyclerview2);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstBook);
+        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstBook);
         myreturned_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         myreturned_recyclerview.setAdapter(recyclerViewAdapter);
 
@@ -62,7 +63,20 @@ public class Tab1Fragment extends Fragment {
 
     }
 
+     static void addBook() {
+        int position;
+        position = 0;
+
+        lstBook.add(position, new Book("Richard III","Shakespear",R.drawable.test_cover,R.drawable.trash,R.drawable.add_circle_red));
+        recyclerViewAdapter.notifyItemInserted(position);
+
+    }
+
     public List<Book> getLstBook() {
         return lstBook;
+    }
+
+    public RecyclerViewAdapter getRecyclerViewAdapter() {
+        return recyclerViewAdapter;
     }
 }
