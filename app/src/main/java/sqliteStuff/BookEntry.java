@@ -19,11 +19,14 @@ public class BookEntry {
 
     private String isbn;
 
-    public BookEntry(String title, String author, Drawable cover, String isbn) {
+    private int priority;
+
+    public BookEntry(String title, String author, Drawable cover, String isbn, int priority) {
         this.title = title;
         this.author = author;
         this.cover = cover;
         this.isbn = isbn;
+        this.priority = priority;
     }
 
     public void setId(int id) {
@@ -48,5 +51,9 @@ public class BookEntry {
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }
