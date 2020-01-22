@@ -43,13 +43,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.book_name.setText(mData.get(position).getBookname());
         holder.book_author.setText(mData.get(position).getBookauthor());
-        holder.book_cover.setImageResource(mData.get(position).getBookcover());
+        holder.book_cover.setImageDrawable(mData.get(position).getBookcover().getDrawable());
         holder.delete_button.setImageResource(mData.get(position).getDelete());
         holder.add_to_returned_button.setImageResource(mData.get(position).getAddreturned());
         /*holder.add_to_not_returned.setImageResource(mData.get(position).getAddnotreturned());*/
 
+        Glide.with(mContext)
 
-       
 
     }
 

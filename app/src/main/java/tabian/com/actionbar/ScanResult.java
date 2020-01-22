@@ -54,6 +54,7 @@ public class ScanResult extends AppCompatActivity {
 
 
 
+
         jsonParse();
 
 
@@ -121,6 +122,7 @@ public class ScanResult extends AppCompatActivity {
                             catch (Exception e) {
                                 book_cover.setImageResource(R.drawable.noimage);
                             }
+
                             try {
                                 book_author.setText(jsonArray.getJSONObject(0).getJSONObject("volumeInfo").getJSONArray("authors").getString(0));
 
@@ -147,7 +149,7 @@ public class ScanResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Tab1Fragment.addBook();
+                Tab1Fragment.addBook(book_title.toString(), book_author.toString(), book_cover);
 
             }
         });

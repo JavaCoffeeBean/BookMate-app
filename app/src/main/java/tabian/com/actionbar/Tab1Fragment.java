@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class Tab1Fragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         lstBook = new ArrayList<>();
-        lstBook.add(new Book("Their Eyes Were Watching God","Zora Hurston",R.drawable.tewwg,R.drawable.trash,R.drawable.add_circle_red));
+        /*lstBook.add(new Book("Their Eyes Were Watching God","Zora Hurston",R.drawable.tewwg,R.drawable.trash,R.drawable.add_circle_red));
         lstBook.add(new Book("Goosebumps","R.L. Stine",R.drawable.g,R.drawable.trash,R.drawable.add_circle_red));
         lstBook.add(new Book("Z For Zachariah","Robert",R.drawable.zfz,R.drawable.trash,R.drawable.add_circle_red));
         lstBook.add(new Book("When Things Fall Apart","Chinua Achebe",R.drawable.wtfa,R.drawable.trash,R.drawable.add_circle_red));
@@ -60,23 +61,16 @@ public class Tab1Fragment extends Fragment {
         lstBook.add(new Book("When Things Fall Apart","Chinua Achebe",R.drawable.wtfa,R.drawable.trash,R.drawable.add_circle_red));
         lstBook.add(new Book("nef","George Orwell",R.drawable.nef,R.drawable.trash,R.drawable.add_circle_red));
         lstBook.add(new Book("Julius Cesar","Shakespear",R.drawable.jc,R.drawable.trash,R.drawable.add_circle_red));
-
+*/
     }
 
-     static void addBook() {
+     static void addBook(String bookname, String bookauthor, ImageView bookcover) {
         int position;
         position = 0;
 
-        lstBook.add(position, new Book("Richard III","Shakespear",R.drawable.test_cover,R.drawable.trash,R.drawable.add_circle_red));
+        lstBook.add(position, new Book(bookname,bookauthor,bookcover,R.drawable.trash,R.drawable.add_circle_red));
         recyclerViewAdapter.notifyItemInserted(position);
 
     }
 
-    public List<Book> getLstBook() {
-        return lstBook;
-    }
-
-    public RecyclerViewAdapter getRecyclerViewAdapter() {
-        return recyclerViewAdapter;
-    }
 }

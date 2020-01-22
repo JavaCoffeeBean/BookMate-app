@@ -7,7 +7,7 @@ public class Book {
 
     private String Bookname;
     private String Bookauthor;
-    private int Bookcover;
+    private ImageView Bookcover;
     private int Delete;
     private int Addreturned;
     private int Addnotreturned;
@@ -16,7 +16,7 @@ public class Book {
 
     }
 
-    public Book(String bookname, String bookauthor, int bookcover, int delete, int addnotreturned) {
+    public Book(String bookname, String bookauthor, ImageView bookcover, int delete, int addnotreturned) {
         Bookname = bookname;
         Bookauthor = bookauthor;
         Bookcover = bookcover;
@@ -35,7 +35,7 @@ public class Book {
         return Bookauthor;
     }
 
-    public int getBookcover() {
+    public ImageView getBookcover() {
         return Bookcover;
     }
 
@@ -62,7 +62,7 @@ public class Book {
         Bookauthor = bookauthor;
     }
 
-    public void setBookcover(int bookcover) {
+    public void setBookcover(ImageView bookcover) {
         Bookcover = bookcover;
     }
 
