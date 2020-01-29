@@ -1,6 +1,9 @@
 package tabian.com.actionbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,8 +28,12 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import sqliteStuff.BookEntry;
+import sqliteStuff.BookViewModel;
+
 
 public class ScanResult extends AppCompatActivity {
+    private BookViewModel bookViewModel;
 
     private TextView book_title;
     private TextView book_author;
@@ -56,6 +64,16 @@ public class ScanResult extends AppCompatActivity {
 
 
         jsonParse();
+
+        bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
+        bookViewModel.getAllBooks().observe(this, new Observer<List<BookEntry>>() {
+
+            @Override
+            public void onChanged(@Nullable List<BookEntry> notes) {
+                //update RecyclerView
+                Toast.makeText(ScanResult.this, "onChanged", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 
@@ -111,7 +129,7 @@ public class ScanResult extends AppCompatActivity {
                                 book_title.setText(jsonArray.getJSONObject(0).getJSONObject("volumeInfo").getString("title"));
                             }
                             catch (Exception e) {
-                                book_title.setText("Error retrieviing Book name");
+                                book_title.setText("Error retrieving book name");
                             }
 
 
