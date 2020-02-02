@@ -23,12 +23,14 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import sqliteStuff.BookEntry;
 
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView scannerView;
     private TextView txtResult;
+    public static final int ADD_NOTE_REQUEST =1;
     public static final String SCAN_TEXT = "tabian.com.actionbar";
     private static final String TAG = "MainActivity";
 
@@ -69,7 +71,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         Intent intent = new Intent(this, ScanResult.class );
         intent.putExtra(SCAN_TEXT, scann);
-        startActivity(intent);
+        startActivityForResult(intent, ADD_NOTE_REQUEST );
 
 
         /*scannerView.startCamera();*/
@@ -87,5 +89,24 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         scannerView.setResultHandler(ScanActivity.this);
         scannerView.startCamera();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
+            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
+            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
+            String cover = data.getStringExtra(ScanResult.EXTRA_COVER;)
+            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
+
+            BookEntry bookEntry = new BookEntry(title, author, ,priority);
+            noteViewModel.insert(note);
+
+            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }

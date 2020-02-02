@@ -6,6 +6,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +37,11 @@ import sqliteStuff.BookViewModel;
 
 
 public class ScanResult extends AppCompatActivity {
+    public static final String EXTRA_TITLE = "com.example.ffffff";
+    public static final String EXTRA_AUTHOR = "com.example.ffffff";
+    public static final String EXTRA_COVER = "com.example.ffffff";
+    public static final String EXTRA_PRIORITY = "com.example.ffffff";
+
     private BookViewModel bookViewModel;
 
     private TextView book_title;
@@ -59,10 +68,6 @@ public class ScanResult extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
 
 
-
-
-
-
         jsonParse();
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
@@ -74,7 +79,6 @@ public class ScanResult extends AppCompatActivity {
                 Toast.makeText(ScanResult.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
     }
@@ -127,25 +131,21 @@ public class ScanResult extends AppCompatActivity {
 
                             try {
                                 book_title.setText(jsonArray.getJSONObject(0).getJSONObject("volumeInfo").getString("title"));
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 book_title.setText("Error retrieving book name");
                             }
 
 
-
                             try {
                                 Glide.with(book_cover).load(cover_art).into(book_cover);
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 book_cover.setImageResource(R.drawable.noimage);
                             }
 
                             try {
                                 book_author.setText(jsonArray.getJSONObject(0).getJSONObject("volumeInfo").getJSONArray("authors").getString(0));
 
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 book_author.setText("Error retrieving author");
 
                             }
@@ -173,7 +173,27 @@ public class ScanResult extends AppCompatActivity {
         });
     }
 
+    private void saveNote() {
+        String bookTitle = book_title.getText().toString();
+        String bookAuthor = book_author.getText().toString();
+        Drawable bookCoverD = book_cover.getDrawable();
+        Bitmap bookCoverBtmap = ((BitmapDrawable) bookCoverD).getBitmap();
+        byte[] bookCoverByte = Helper.getBytes(bookCoverBtmap);
 
+        int priority = 9;
+
+
+        Intent data = new Intent();
+        data.putExtra(EXTRA_TITLE, bookTitle);
+        data.putExtra(EXTRA_AUTHOR, bookAuthor);
+        data.putExtra(EXTRA_COVER, bookCoverByte);
+        data.putExtra(EXTRA_PRIORITY, priority);
+
+        setResult(RESULT_OK, data);
+        finish();
+
+
+    }
 }
 
 

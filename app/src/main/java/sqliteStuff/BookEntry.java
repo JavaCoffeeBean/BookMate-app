@@ -15,17 +15,16 @@ public class BookEntry {
 
     private String author;
 
-    private Drawable cover;
+    private byte[] cover;
 
     private String isbn;
 
     private int priority;
 
-    public BookEntry(String title, String author, Drawable cover, String isbn, int priority) {
+    public BookEntry(String title, String author, byte[] cover, int priority) {
         this.title = title;
         this.author = author;
         this.cover = cover;
-        this.isbn = isbn;
         this.priority = priority;
     }
 
@@ -45,13 +44,10 @@ public class BookEntry {
         return author;
     }
 
-    public Drawable getCover() {
+    public byte[] getCover() {
         return cover;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
 
     public int getPriority() {
         return priority;
