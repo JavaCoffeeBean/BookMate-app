@@ -1,29 +1,15 @@
 package tabian.com.actionbar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.zxing.Result;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import sqliteStuff.BookEntry;
 
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -91,22 +77,5 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         scannerView.startCamera();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
-            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
-            String cover = data.getStringExtra(ScanResult.EXTRA_COVER;)
-            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
-
-            BookEntry bookEntry = new BookEntry(title, author, ,priority);
-            noteViewModel.insert(note);
-
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

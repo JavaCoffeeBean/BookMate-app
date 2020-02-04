@@ -1,25 +1,34 @@
 package tabian.com.actionbar;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import sqliteStuff.BookEntry;
+import sqliteStuff.BookViewModel;
+
+import static android.app.Activity.RESULT_OK;
+
 
 public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
+    public static final int ADD_BOOK_REQUEST = 1;
+    BookViewModel bookViewModel;
 
     View v;
     private RecyclerView myreturned_recyclerview;
@@ -38,6 +47,17 @@ public class Tab1Fragment extends Fragment {
         recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstBook);
         myreturned_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         myreturned_recyclerview.setAdapter(recyclerViewAdapter);
+
+
+        myreturned_recyclerview.setAdapter(recyclerViewAdapter);
+
+        bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
+        bookViewModel.getAllBooks().observe(this, new Observer<List<BookEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<BookEntry> bookEntries) {
+                recyclerViewAdapter.setNotes(bookEntries);
+            }
+        });
 
 
         return view;
@@ -71,6 +91,25 @@ public class Tab1Fragment extends Fragment {
         lstBook.add(position, new Book(bookname,bookauthor,bookcover,R.drawable.trash,R.drawable.add_circle_red));
         recyclerViewAdapter.notifyItemInserted(position);
 
+    }
+
+    @Override
+    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
+            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
+            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
+            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
+            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
+
+            BookEntry bookEntry = new BookEntry(title, author, cover, priority);
+            bookViewModel.insert(bookEntry);
+
+            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
