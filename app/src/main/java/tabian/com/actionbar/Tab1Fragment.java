@@ -54,8 +54,8 @@ public class Tab1Fragment extends Fragment {
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
         bookViewModel.getAllBooks().observe(this, new Observer<List<BookEntry>>() {
             @Override
-            public void onChanged(@Nullable List<BookEntry> bookEntries) {
-                recyclerViewAdapter.setNotes(bookEntries);
+            public void onChanged(@Nullable List<Book> bookEntries) {
+                recyclerViewAdapter.setBookEntries(bookEntries);
             }
         });
 
@@ -93,23 +93,6 @@ public class Tab1Fragment extends Fragment {
 
     }
 
-    @Override
-    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
 
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
-            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
-            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
-            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
-
-            BookEntry bookEntry = new BookEntry(title, author, cover, priority);
-            bookViewModel.insert(bookEntry);
-
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

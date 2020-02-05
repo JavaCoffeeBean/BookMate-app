@@ -1,9 +1,14 @@
 package tabian.com.actionbar;
 
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "book_table")
 public class Book {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private String Bookname;
     private String Bookauthor;

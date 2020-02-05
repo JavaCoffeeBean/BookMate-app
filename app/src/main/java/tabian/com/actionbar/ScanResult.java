@@ -1,22 +1,20 @@
 package tabian.com.actionbar;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +39,8 @@ public class ScanResult extends AppCompatActivity {
     public static final String EXTRA_AUTHOR = "com.example.ffffff";
     public static final String EXTRA_COVER = "com.example.ffffff";
     public static final String EXTRA_PRIORITY = "com.example.ffffff";
+
+    public static final int ADD_BOOK_REQUEST = 1;
 
     private BookViewModel bookViewModel;
 
@@ -166,6 +166,10 @@ public class ScanResult extends AppCompatActivity {
         add_returned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveNote();
+
+                Intent intent2 = new Intent(ScanResult.this, ScanResult.class);
+                startActivityForResult(intent2, ADD_BOOK_REQUEST);
 
                 Tab1Fragment.addBook(book_title.toString(), book_author.toString(), book_cover);
 
@@ -193,6 +197,27 @@ public class ScanResult extends AppCompatActivity {
         finish();
 
 
+    }
+
+    @Override
+    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
+            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
+            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
+            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
+            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
+
+            BookEntry bookEntry = new BookEntry(title, author, cover, priority);
+            bookViewModel.insert(bookEntry);
+
+            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+        }
+            else {
+            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
