@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import tabian.com.actionbar.Book;
+
 public class BookRepository {
     private BookDao bookDao;
-    private LiveData<List<BookEntry>> allBooks;
+    private LiveData<List<Book>> allBooks;
 
     public BookRepository(Application application) {
         BookDatabase database = BookDatabase.getInstance(application);
@@ -17,15 +19,15 @@ public class BookRepository {
         allBooks = bookDao.getAllBookEntries();
     }
 
-    public void insert(BookEntry bookEntry) {
+    public void insert(Book bookEntry) {
         new InsertNoteAsyncTask(bookDao).execute(bookEntry);
     }
 
-    public void update(BookEntry bookEntry) {
+    public void update(Book bookEntry) {
         new UpdateNoteAsyncTask(bookDao).execute(bookEntry);
     }
 
-    public void delete(BookEntry bookEntry) {
+    public void delete(Book bookEntry) {
         new DeleteNoteAsyncTask(bookDao).execute(bookEntry);
     }
 
@@ -33,11 +35,11 @@ public class BookRepository {
         new DeleteAllNotesAsyncTask(bookDao).execute();
     }
 
-    public LiveData<List<BookEntry>> getAllBooks() {
+    public LiveData<List<Book>> getAllBooks() {
         return allBooks;
     }
 
-    private static class InsertNoteAsyncTask extends AsyncTask<BookEntry, Void, Void> {
+    private static class InsertNoteAsyncTask extends AsyncTask<Book, Void, Void> {
         private BookDao bookDao;
 
         private InsertNoteAsyncTask(BookDao bookDao) {
@@ -45,13 +47,13 @@ public class BookRepository {
         }
 
         @Override
-        protected Void doInBackground(BookEntry... bookEntries) {
+        protected Void doInBackground(Book... bookEntries) {
             bookDao.insert(bookEntries[0]);
             return null;
         }
     }
 
-    private static class UpdateNoteAsyncTask extends AsyncTask<BookEntry, Void, Void> {
+    private static class UpdateNoteAsyncTask extends AsyncTask<Book, Void, Void> {
         private BookDao bookDao;
 
         private UpdateNoteAsyncTask(BookDao bookDao) {
@@ -59,13 +61,13 @@ public class BookRepository {
         }
 
         @Override
-        protected Void doInBackground(BookEntry... bookEntries) {
+        protected Void doInBackground(Book... bookEntries) {
             bookDao.update(bookEntries[0]);
             return null;
         }
     }
 
-    private static class DeleteNoteAsyncTask extends AsyncTask<BookEntry, Void, Void> {
+    private static class DeleteNoteAsyncTask extends AsyncTask<Book, Void, Void> {
         private BookDao bookDao;
 
         private DeleteNoteAsyncTask(BookDao bookDao) {
@@ -73,7 +75,7 @@ public class BookRepository {
         }
 
         @Override
-        protected Void doInBackground(BookEntry... bookEntries) {
+        protected Void doInBackground(Book... bookEntries) {
             bookDao.delete(bookEntries[0]);
             return null;
         }

@@ -8,10 +8,12 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import tabian.com.actionbar.Book;
+
 public class BookViewModel extends AndroidViewModel {
 
     private BookRepository repository;
-    private LiveData<List<BookEntry>> allBooks;
+    private LiveData<List<Book>> allBooks;
 
     public BookViewModel(@NonNull Application application) {
         super(application);
@@ -19,15 +21,15 @@ public class BookViewModel extends AndroidViewModel {
         allBooks = repository.getAllBooks();
     }
 
-    public void insert(BookEntry bookEntry) {
+    public void insert(Book bookEntry) {
         repository.insert(bookEntry);
     }
 
-    public void update(BookEntry bookEntry) {
+    public void update(Book bookEntry) {
         repository.update(bookEntry);
     }
 
-    public void delete(BookEntry bookEntry) {
+    public void delete(Book bookEntry) {
         repository.delete(bookEntry);
     }
 
@@ -35,7 +37,7 @@ public class BookViewModel extends AndroidViewModel {
         repository.deleteAllNotes();
     }
 
-    public LiveData<List<BookEntry>> getAllBooks() {
+    public LiveData<List<Book>> getAllBooks() {
         return allBooks;
     }
 }

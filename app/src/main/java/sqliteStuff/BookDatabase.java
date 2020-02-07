@@ -1,20 +1,17 @@
 package sqliteStuff;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import tabian.com.actionbar.R;
+import tabian.com.actionbar.Book;
 
-@Database(entities = BookEntry.class, version = 1)
+@Database(entities = Book.class, version = 1)
 public abstract class BookDatabase extends RoomDatabase {
 
     private static BookDatabase instance;

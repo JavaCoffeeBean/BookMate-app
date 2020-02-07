@@ -1,32 +1,33 @@
 package tabian.com.actionbar;
 
-import android.widget.ImageView;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "book_table")
 public class Book {
+
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int Id;
 
     private String Bookname;
     private String Bookauthor;
-    private ImageView Bookcover;
+    private byte[] Bookcover;
     private int Delete;
     private int Addreturned;
     private int Addnotreturned;
+    private int Priority;
 
     public Book() {
 
     }
 
-    public Book(String bookname, String bookauthor, ImageView bookcover, int delete, int addnotreturned) {
-        Bookname = bookname;
-        Bookauthor = bookauthor;
-        Bookcover = bookcover;
-        Delete = delete;
-        Addnotreturned = addnotreturned;
+    public Book(String bookname, String bookauthor, byte[] bookcover, int delete, int addnotreturned, int priority) {
+        this.Bookname = bookname;
+        this.Bookauthor = bookauthor;
+        this.Bookcover = bookcover;
+        this.Delete = delete;
+        this.Addnotreturned = addnotreturned;
+        this.Priority = priority;
     }
 
     //getter
@@ -40,7 +41,7 @@ public class Book {
         return Bookauthor;
     }
 
-    public ImageView getBookcover() {
+    public byte[] getBookcover() {
         return Bookcover;
     }
 
@@ -50,6 +51,14 @@ public class Book {
 
     public int getAddreturned() {
         return Addreturned;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public int getPriority() {
+        return Priority;
     }
 
     public int getAddnotreturned() {
@@ -67,7 +76,7 @@ public class Book {
         Bookauthor = bookauthor;
     }
 
-    public void setBookcover(ImageView bookcover) {
+    public void setBookcover(byte[] bookcover) {
         Bookcover = bookcover;
     }
 
@@ -81,5 +90,9 @@ public class Book {
 
     public void setAddnotreturned(int addnotreturned) {
         Addnotreturned = addnotreturned;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }

@@ -12,10 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import sqliteStuff.BookEntry;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -41,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.book_name.setText(mData.get(position).getBookname());
         holder.book_author.setText(mData.get(position).getBookauthor());
-        holder.book_cover.setImageDrawable(mData.get(position).getBookcover().getDrawable());
+        holder.book_cover.setImageBitmap(Helper.getImage(mData.get(position).getBookcover()));
         holder.delete_button.setImageResource(mData.get(position).getDelete());
         holder.add_to_returned_button.setImageResource(mData.get(position).getAddreturned());
         /*holder.add_to_not_returned.setImageResource(mData.get(position).getAddnotreturned());*/

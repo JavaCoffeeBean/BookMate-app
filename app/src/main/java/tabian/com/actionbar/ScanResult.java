@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import sqliteStuff.BookEntry;
 import sqliteStuff.BookViewModel;
 
 
@@ -71,10 +70,10 @@ public class ScanResult extends AppCompatActivity {
         jsonParse();
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
-        bookViewModel.getAllBooks().observe(this, new Observer<List<BookEntry>>() {
+        bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
 
             @Override
-            public void onChanged(@Nullable List<BookEntry> notes) {
+            public void onChanged(@Nullable List<Book> notes) {
                 //update RecyclerView
                 Toast.makeText(ScanResult.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
@@ -210,8 +209,8 @@ public class ScanResult extends AppCompatActivity {
             byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
             int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
 
-            BookEntry bookEntry = new BookEntry(title, author, cover, priority);
-            bookViewModel.insert(bookEntry);
+            Book book = new Book(title, author, cover, priority);
+            bookViewModel.insert(book);
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
         }

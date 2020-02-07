@@ -9,21 +9,23 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import tabian.com.actionbar.Book;
+
 @Dao
 public interface BookDao {
 
     @Insert
-    void insert(BookEntry bookEntry);
+    void insert(Book bookEntry);
 
     @Update
-    void update(BookEntry bookEntry);
+    void update(Book bookEntry);
 
     @Delete
-    void delete(BookEntry bookEntry);
+    void delete(Book bookEntry);
 
     @Query("DELETE FROM book_table")
     void deleteAllBookentries();
 
     @Query("SELECT * FROM book_table ORDER BY priority DESC")
-    LiveData<List<BookEntry>> getAllBookEntries();
+    LiveData<List<Book>> getAllBookEntries();
 }
