@@ -209,7 +209,7 @@ public class ScanResult extends AppCompatActivity {
             byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
             int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
 
-            Book book = new Book(title, author, cover, priority);
+            Book book = new Book(title, author, cover, R.drawable.trash, R.drawable.add_circle_red, priority);
             bookViewModel.insert(book);
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();

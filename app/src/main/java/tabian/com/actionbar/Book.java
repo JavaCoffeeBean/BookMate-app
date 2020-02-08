@@ -95,4 +95,8 @@ public class Book {
     public void setId(int id) {
         Id = id;
     }
+
+    public void setPriority(int priority) {
+        Priority = priority;
+    }
 }

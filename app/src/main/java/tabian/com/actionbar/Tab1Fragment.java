@@ -83,7 +83,7 @@ public class Tab1Fragment extends Fragment {
         int position;
         position = 0;
 
-        /*lstBook.add(position, new Book(bookname,bookauthor,bookcover,R.drawable.trash,R.drawable.add_circle_red));*/
+        lstBook.add(position, new Book(bookname,bookauthor,bookcover,R.drawable.trash,R.drawable.add_circle_red));
         recyclerViewAdapter.notifyItemInserted(position);
 
     }
