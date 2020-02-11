@@ -2,48 +2,27 @@ package tabian.com.actionbar;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
-import com.google.zxing.Result;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-
-
-import androidx.appcompat.app.ActionBar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.pm.PackageManager;
-import android.hardware.Camera;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,10 +31,15 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
+import sqliteStuff.BookViewModel;
 
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     private static final String TAG = "MainActivity";
+
+    public static final int ADD_BOOK_REQUEST = 1;
+
+    private BookViewModel bookViewModel;
 
 
 
@@ -166,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         if (EasyPermissions.hasPermissions(this, perms)) {
             Toast.makeText(this, "Opening camera", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(this, ScanActivity.class );
+            Intent intent = new Intent(MainActivity.this, ScanActivity.class );
             startActivity(intent);
         } else {
             EasyPermissions.requestPermissions(this, "We need permissions in order to access camera functionalities",
@@ -198,7 +182,24 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+            return;
 
+        }
+
+
+        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
+            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
+            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
+            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
+            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
+
+            Book book = new Book(title, author, cover, R.drawable.trash, R.drawable.add_circle_red, priority);
+            bookViewModel.insert(book);
+
+            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -387,6 +388,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         /*initRecyclerView2();*/
     }
+
+
 
   /*  @Override
     protected void onDestroy() {

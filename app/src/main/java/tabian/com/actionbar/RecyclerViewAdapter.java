@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     Context mContext;
-    List<Book> mData;
+    private List<Book> mData = new ArrayList<>();
 
     public RecyclerViewAdapter(Context mContext, List<Book> mData) {
         this.mContext = mContext;
@@ -35,12 +36,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Book currentBook = mData.get(position);
 
-        holder.book_name.setText(mData.get(position).getBookname());
-        holder.book_author.setText(mData.get(position).getBookauthor());
-        holder.book_cover.setImageBitmap(Helper.getImage(mData.get(position).getBookcover()));
-        holder.delete_button.setImageResource(mData.get(position).getDelete());
-        holder.add_to_returned_button.setImageResource(mData.get(position).getAddreturned());
+        holder.book_name.setText(currentBook.getBookname());
+        holder.book_author.setText(currentBook.getBookauthor());
+        holder.book_cover.setImageBitmap(Helper.getImage(currentBook.getBookcover()));
+        holder.delete_button.setImageResource(currentBook.getDelete());
+        holder.add_to_returned_button.setImageResource(currentBook.getAddreturned());
         /*holder.add_to_not_returned.setImageResource(mData.get(position).getAddnotreturned());*/
 
         Glide.with(mContext);

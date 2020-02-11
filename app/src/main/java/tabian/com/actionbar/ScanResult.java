@@ -9,12 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,16 +24,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 import sqliteStuff.BookViewModel;
 
 
 public class ScanResult extends AppCompatActivity {
-    public static final String EXTRA_TITLE = "com.example.ffffff";
-    public static final String EXTRA_AUTHOR = "com.example.ffffff";
-    public static final String EXTRA_COVER = "com.example.ffffff";
-    public static final String EXTRA_PRIORITY = "com.example.ffffff";
+    public static final String EXTRA_TITLE = "tabian.com.actionbar.EXTRA_TITLE";
+    public static final String EXTRA_AUTHOR = "tabian.com.actionbar.EXTRA_AUTHOR";
+    public static final String EXTRA_COVER = "tabian.com.actionbar.EXTRA_COVER";
+    public static final String EXTRA_PRIORITY = "tabian.com.actionbar.EXTRA_PRIORITY";
 
     public static final int ADD_BOOK_REQUEST = 1;
 
@@ -69,15 +63,7 @@ public class ScanResult extends AppCompatActivity {
 
         jsonParse();
 
-        bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
-        bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
 
-            @Override
-            public void onChanged(@Nullable List<Book> notes) {
-                //update RecyclerView
-                Toast.makeText(ScanResult.this, "onChanged", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
     }
@@ -170,7 +156,9 @@ public class ScanResult extends AppCompatActivity {
                 Intent intent2 = new Intent(ScanResult.this, ScanResult.class);
                 startActivityForResult(intent2, ADD_BOOK_REQUEST);
 
+/*
                 Tab1Fragment.addBook(book_title.toString(), book_author.toString(), book_cover);
+*/
 
             }
         });
@@ -198,26 +186,6 @@ public class ScanResult extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
-            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
-            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
-            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
-
-            Book book = new Book(title, author, cover, R.drawable.trash, R.drawable.add_circle_red, priority);
-            bookViewModel.insert(book);
-
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
-        }
-            else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
 
 

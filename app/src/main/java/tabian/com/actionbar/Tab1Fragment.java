@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -46,7 +45,7 @@ public class Tab1Fragment extends Fragment {
 
         myreturned_recyclerview.setAdapter(recyclerViewAdapter);
 
-        bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
+        bookViewModel = ViewModelProviders.of(getActivity()).get(BookViewModel.class);
         bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
             @Override
             public void onChanged(@Nullable List<Book> bookEntries) {
@@ -79,14 +78,14 @@ public class Tab1Fragment extends Fragment {
 */
     }
 
-     static void addBook(String bookname, String bookauthor, ImageView bookcover) {
+    /* static void addBook(String bookname, String bookauthor, ImageView bookcover) {
         int position;
         position = 0;
 
         lstBook.add(position, new Book(bookname,bookauthor,bookcover,R.drawable.trash,R.drawable.add_circle_red));
         recyclerViewAdapter.notifyItemInserted(position);
 
-    }
+    }*/
 
 
 
