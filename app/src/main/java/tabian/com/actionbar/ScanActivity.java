@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.Result;
@@ -55,9 +57,9 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
 
 
-        Intent intent = new Intent(this, ScanResult.class );
-        intent.putExtra(SCAN_TEXT, scann);
-        startActivityForResult(intent, ADD_NOTE_REQUEST );
+        MainActivity.mainIntent = new Intent(MainActivity.mainContext, ScanResult.class );
+        MainActivity.mainIntent.putExtra(SCAN_TEXT, scann);
+        startActivityForResult(MainActivity.mainIntent, ADD_NOTE_REQUEST );
 
 
         /*scannerView.startCamera();*/
@@ -77,5 +79,23 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         scannerView.startCamera();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
+            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
+            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
+            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
+            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
+
+            Book book = new Book(title, author, cover, R.drawable.trash, R.drawable.add_circle_red, priority);
+            bookViewModel.insert(book);
+
+            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

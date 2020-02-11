@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private ImageView addBook;
     private ZXingScannerView scannerView;
     private TextView txtResult;
+    static Context mainContext;
+    static Intent mainIntent;
 
 
 //    private static final String TAG = "MainActivity";
@@ -182,25 +184,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
-            return;
 
         }
 
 
-        if (requestCode == ADD_BOOK_REQUEST && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(ScanResult.EXTRA_TITLE);
-            String author = data.getStringExtra(ScanResult.EXTRA_AUTHOR);
-            byte[] cover = data.getByteArrayExtra(ScanResult.EXTRA_COVER);
-            int priority = data.getIntExtra(ScanResult.EXTRA_PRIORITY, 1);
-
-            Book book = new Book(title, author, cover, R.drawable.trash, R.drawable.add_circle_red, priority);
-            bookViewModel.insert(book);
-
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
-        }
     }
 
 
@@ -391,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
 
 
-  /*  @Override
+    /*  @Override
     protected void onDestroy() {
         scannerView.stopCamera();
         super.onDestroy();
