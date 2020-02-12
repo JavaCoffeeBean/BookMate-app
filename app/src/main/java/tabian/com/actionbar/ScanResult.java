@@ -171,7 +171,7 @@ public class ScanResult extends AppCompatActivity {
         Bitmap bookCoverBtmap = ((BitmapDrawable) bookCoverD).getBitmap();
         byte[] bookCoverByte = Helper.getBytes(bookCoverBtmap);
 
-        int priority = 9;
+        int priority = 1;
 
 
         Intent data = new Intent();
