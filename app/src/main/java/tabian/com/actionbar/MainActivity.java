@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public static final int ADD_BOOK_REQUEST = 1;
 
     private BookViewModel bookViewModel;
+    private ScanActivity scanActivity = new ScanActivity();
 
 
 
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -375,6 +378,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         /*initRecyclerView2();*/
     }
+
+
+
+
 
 
 
