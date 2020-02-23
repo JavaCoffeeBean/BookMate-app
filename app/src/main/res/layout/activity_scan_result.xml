@@ -48,24 +48,24 @@
         android:layout_below="@id/book_Cover"
         android:layout_centerHorizontal="true">
 
-    <TextView
-        android:id="@+id/book_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Their Eyes Were Watching God"
-        android:textSize="20sp"
-        android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/book_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Their Eyes Were Watching God"
+            android:textSize="20sp"
+            android:textColor="@color/white" />
 
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zora Hurston"
-        android:textColor="@color/author_color"
-        android:layout_below="@id/book_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp"/>
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zora Hurston"
+            android:textColor="@color/author_color"
+            android:layout_below="@id/book_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"/>
 
     </RelativeLayout>
 
@@ -78,6 +78,15 @@
         android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:layout_marginTop="25dp"/>
+
+    <Button
+        android:id="@+id/addy"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/prompt_user"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="add book"/>
 
 
 

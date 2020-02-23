@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +23,11 @@ public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     public static final int ADD_BOOK_REQUEST = 1;
     private ScanActivity scanActivity;
-    private BookViewModel bookViewModel;
 
     View v;
     private RecyclerView myreturned_recyclerview;
     static List<Book> lstBook;
+    static BookViewModel bookViewModel;
 
     public Tab1Fragment() {
     }
@@ -38,20 +40,20 @@ public class Tab1Fragment extends Fragment {
         scanActivity = new ScanActivity();
 
         myreturned_recyclerview = view.findViewById(R.id.returned_recyclerview2);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstBook);
+        final RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstBook);
         myreturned_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         myreturned_recyclerview.setAdapter(recyclerViewAdapter);
 
 
         myreturned_recyclerview.setAdapter(recyclerViewAdapter);
 
-       /* bookViewModel = ViewModelProviders.of(getActivity()).get(BookViewModel.class);
+        bookViewModel = ViewModelProviders.of(getActivity()).get(BookViewModel.class);
         bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
             @Override
             public void onChanged(@Nullable List<Book> bookEntries) {
                 recyclerViewAdapter.setBookEntries(bookEntries);
             }
-        });*/
+        });
 
 
         return view;

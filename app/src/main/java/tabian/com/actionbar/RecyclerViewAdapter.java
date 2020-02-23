@@ -28,10 +28,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v;
+        /*View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.not_returned_listitem, parent, false);
         MyViewHolder vHolder = new MyViewHolder(v);
-        return vHolder;
+        return vHolder;*/
+
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.not_returned_listitem, parent, false);
+        return new MyViewHolder(itemView);
     }
 
     @Override

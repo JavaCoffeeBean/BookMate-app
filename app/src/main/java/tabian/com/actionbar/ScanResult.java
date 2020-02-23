@@ -9,12 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,8 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 import sqliteStuff.BookViewModel;
 
 
@@ -42,14 +36,12 @@ public class ScanResult extends AppCompatActivity {
 
     private BookViewModel bookViewModel;
     private Tab1Fragment tab1Fragment;
-
+    private Button add_returned;
     private TextView book_title;
     private TextView book_author;
     private String cover_art;
     private ImageView book_cover;
     private RequestQueue mQueue;
-    private Button add_returned;
-    private Button add_not_returned;
 
     private static final String TAG = "MainActivity";
 
@@ -61,24 +53,17 @@ public class ScanResult extends AppCompatActivity {
         book_title = findViewById(R.id.book_title);
         book_author = findViewById(R.id.author);
         book_cover = findViewById(R.id.book_Cover);
-        add_returned = findViewById(R.id.returned_BUTTON);
-        add_not_returned = findViewById(R.id.not_returned_BUTTON);
+        add_returned = findViewById(R.id.addy);
+
 
         mQueue = Volley.newRequestQueue(this);
 
 
         jsonParse();
 
-        tab1Fragment = new Tab1Fragment();
 
-        bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
-        bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
 
-            @Override
-            public void onChanged(@Nullable List<Book> notes) {
-                tab1Fragment.getRecyclerViewAdapter().setBookEntries(notes);
-            }
-        });
+
 
 
 
@@ -172,6 +157,7 @@ public class ScanResult extends AppCompatActivity {
 
 
 
+
 /*
                 Tab1Fragment.addBook(book_title.toString(), book_author.toString(), book_cover);
 */
@@ -181,6 +167,7 @@ public class ScanResult extends AppCompatActivity {
     }
 
     private void saveNote() {
+        tab1Fragment = new Tab1Fragment();
         String bookTitle = book_title.getText().toString();
         String bookAuthor = book_author.getText().toString();
         Drawable bookCoverD = book_cover.getDrawable();
@@ -191,22 +178,21 @@ public class ScanResult extends AppCompatActivity {
 
 
 
-            Book book = new Book(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle_red, priority);
-            bookViewModel.insert(book);
+        Book book = new Book(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle_red, priority);
+        Tab1Fragment.bookViewModel.insert(book);
 
-        for (Book bookEntries : bookViewModel.getAllBooks().getValue()) {
+     /*   for (Book bookEntries : bookViewModel.getAllBooks().getValue()) {
+            Log.d(TAG, "$$$$$$CASHINA$$$$$$$");
 
-            tab1Fragment.lstBook.add(new Book(bookEntries.getBookname(), bookEntries.getBookauthor(), bookEntries.getBookcover(), bookEntries.getDelete(), bookEntries.getAddnotreturned(), bookEntries.getPriority()));
+            tab1Fragment.lstBook.add(new Book(bookEntries.getBookname(), bookEntries.getBookauthor(), (bookEntries.getBookcover()), bookEntries.getDelete(), bookEntries.getAddnotreturned(), bookEntries.getPriority()));
         }
 
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();*/
 
 
 
     }
 
 }
-
-
 
 
