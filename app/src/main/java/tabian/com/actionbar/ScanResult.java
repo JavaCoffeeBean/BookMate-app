@@ -37,6 +37,7 @@ public class ScanResult extends AppCompatActivity {
     private BookViewModel bookViewModel;
     private Tab1Fragment tab1Fragment;
     private Button add_returned;
+    private Button add_not_returned;
     private TextView book_title;
     private TextView book_author;
     private String cover_art;
@@ -54,6 +55,7 @@ public class ScanResult extends AppCompatActivity {
         book_author = findViewById(R.id.author);
         book_cover = findViewById(R.id.book_Cover);
         add_returned = findViewById(R.id.addy);
+        add_not_returned = findViewById(R.id.addNotReturned);
 
 
         mQueue = Volley.newRequestQueue(this);
@@ -153,7 +155,7 @@ public class ScanResult extends AppCompatActivity {
         add_returned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveNote();
+                saveNote(Tab1Fragment.bookViewModel);
 
 
 
@@ -164,9 +166,18 @@ public class ScanResult extends AppCompatActivity {
 
             }
         });
+
+
+        add_not_returned.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveNote2(Tab2Fragment.bookViewModel2);
+
+            }
+        });
     }
 
-    private void saveNote() {
+    private void saveNote(BookViewModel bv) {
         tab1Fragment = new Tab1Fragment();
         String bookTitle = book_title.getText().toString();
         String bookAuthor = book_author.getText().toString();
@@ -179,7 +190,34 @@ public class ScanResult extends AppCompatActivity {
 
 
         Book book = new Book(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle_red, priority);
-        Tab1Fragment.bookViewModel.insert(book);
+        bv.insert(book);
+
+     /*   for (Book bookEntries : bookViewModel.getAllBooks().getValue()) {
+            Log.d(TAG, "$$$$$$CASHINA$$$$$$$");
+
+            tab1Fragment.lstBook.add(new Book(bookEntries.getBookname(), bookEntries.getBookauthor(), (bookEntries.getBookcover()), bookEntries.getDelete(), bookEntries.getAddnotreturned(), bookEntries.getPriority()));
+        }
+
+        Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();*/
+
+
+
+    }
+
+    private void saveNote2(BookViewModel bv) {
+        tab1Fragment = new Tab1Fragment();
+        String bookTitle = book_title.getText().toString();
+        String bookAuthor = book_author.getText().toString();
+        Drawable bookCoverD = book_cover.getDrawable();
+        Bitmap bookCoverBtmap = ((BitmapDrawable) bookCoverD).getBitmap();
+        byte[] bookCoverByte = Helper.getBytes(bookCoverBtmap);
+
+        int priority = 1;
+
+
+
+        Book2 book = new Book2(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle, priority);
+        bv.insert2(book);
 
      /*   for (Book bookEntries : bookViewModel.getAllBooks().getValue()) {
             Log.d(TAG, "$$$$$$CASHINA$$$$$$$");

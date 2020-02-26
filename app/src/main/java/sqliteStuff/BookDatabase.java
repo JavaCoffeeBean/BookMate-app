@@ -10,8 +10,9 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import tabian.com.actionbar.Book;
+import tabian.com.actionbar.Book2;
 
-@Database(entities = Book.class, version = 1)
+@Database(entities = {Book.class, Book2.class}, version = 2)
 public abstract class BookDatabase extends RoomDatabase {
 
     private static BookDatabase instance;

@@ -34,12 +34,14 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.book_name.setText(mData2.get(position).getBookname());
-        holder.book_author.setText(mData2.get(position).getBookauthor());
-        holder.book_cover.setImageResource(mData2.get(position).getBookcover());
-        holder.delete_button.setImageResource(mData2.get(position).getDelete());
+        Book2 currentBook2 = mData2.get(position);
+
+        holder.book_name.setText(currentBook2.getBookname());
+        holder.book_author.setText(currentBook2.getBookauthor());
+        holder.book_cover.setImageBitmap(Helper.getImage(currentBook2.getBookcover()));
+        holder.delete_button.setImageResource(currentBook2.getDelete());
        /* holder.add_to_returned_button.setImageResource(mData2.get(position).getAddnotreturned());*/
-        holder.add_to_not_returned.setImageResource(mData2.get(position).getAddnotreturned());
+        holder.add_to_not_returned.setImageResource(currentBook2.getAddnotreturned());
 
 
        
@@ -49,6 +51,11 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public int getItemCount() {
         return mData2.size();
+    }
+
+    public void setBookEntries2(List<Book2> mData) {
+        this.mData2 = mData;
+        notifyDataSetChanged();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

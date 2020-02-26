@@ -1,24 +1,32 @@
 package tabian.com.actionbar;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "book_table2")
 public class Book2 {
+    @PrimaryKey(autoGenerate = true)
+    private int Id;
 
     private String Bookname;
     private String Bookauthor;
-    private int Bookcover;
+    private byte[] Bookcover;
     private int Delete;
     private int Addreturned;
     private int Addnotreturned;
+    private int Priority;
 
     public Book2() {
 
     }
 
-    public Book2(String bookname, String bookauthor, int bookcover, int delete, int addnotreturned) {
-        Bookname = bookname;
-        Bookauthor = bookauthor;
-        Bookcover = bookcover;
-        Delete = delete;
-        Addnotreturned = addnotreturned;
+    public Book2(String bookname, String bookauthor, byte[] bookcover, int delete, int addreturned, int priority) {
+        this.Bookname = bookname;
+        this.Bookauthor = bookauthor;
+        this.Bookcover = bookcover;
+        this.Delete = delete;
+        this.Addreturned = addreturned;
+        this.Priority = priority;
     }
 
     //getter
@@ -32,7 +40,7 @@ public class Book2 {
         return Bookauthor;
     }
 
-    public int getBookcover() {
+    public byte[] getBookcover() {
         return Bookcover;
     }
 
@@ -44,7 +52,17 @@ public class Book2 {
         return Addnotreturned;
     }
 
+    public int getId() {
+        return Id;
+    }
 
+    public int getAddreturned() {
+        return Addreturned;
+    }
+
+    public int getPriority() {
+        return Priority;
+    }
 
     //setter
 
@@ -57,7 +75,7 @@ public class Book2 {
         Bookauthor = bookauthor;
     }
 
-    public void setBookcover(int bookcover) {
+    public void setBookcover(byte[] bookcover) {
         Bookcover = bookcover;
     }
 
@@ -69,4 +87,15 @@ public class Book2 {
         Addnotreturned = addnotreturned;
     }
 
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public void setAddreturned(int addreturned) {
+        Addreturned = addreturned;
+    }
+
+    public void setPriority(int priority) {
+        Priority = priority;
+    }
 }

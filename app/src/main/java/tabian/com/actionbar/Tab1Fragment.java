@@ -45,7 +45,6 @@ public class Tab1Fragment extends Fragment {
         myreturned_recyclerview.setAdapter(recyclerViewAdapter);
 
 
-        myreturned_recyclerview.setAdapter(recyclerViewAdapter);
 
         bookViewModel = ViewModelProviders.of(getActivity()).get(BookViewModel.class);
         bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
