@@ -1,6 +1,7 @@
 package tabian.com.actionbar;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ public class Tab1Fragment extends Fragment {
     private RecyclerView myreturned_recyclerview;
     static List<Book> lstBook;
     static BookViewModel bookViewModel;
+    RecyclerViewAdapter.MyViewHolder myViewHolder;
+
 
     public Tab1Fragment() {
     }
@@ -35,7 +38,7 @@ public class Tab1Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment2_layout,container,false);
+        final View view = inflater.inflate(R.layout.fragment2_layout,container,false);
 
         scanActivity = new ScanActivity();
 
@@ -54,6 +57,22 @@ public class Tab1Fragment extends Fragment {
             }
         });
 
+        recyclerViewAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent activity2Intent = new Intent(getActivity(), BookInformationActivity.class);
+                startActivity(activity2Intent);
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                bookViewModel.delete(recyclerViewAdapter.getBookAt(position));
+
+            }
+        });
+
+
+
 
         return view;
     }
@@ -61,6 +80,8 @@ public class Tab1Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
 
 
@@ -112,13 +133,11 @@ public class Tab1Fragment extends Fragment {
 */
     }
 
-    public RecyclerViewAdapter getRecyclerViewAdapter() {
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstBook);
 
-        return recyclerViewAdapter;
+
+    public static BookViewModel getBookViewModel() {
+        return bookViewModel;
     }
-
-
 
     /* static void addBook(String bookname, String bookauthor, ImageView bookcover) {
         int position;

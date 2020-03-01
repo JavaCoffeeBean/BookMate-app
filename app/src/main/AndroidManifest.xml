@@ -15,10 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanResult"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".BookInformationActivity"
+            android:label="@string/title_activity_book_information"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ScanResult"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".ScanActivity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +36,6 @@
         <activity android:name=".ActivityTwo" />
         <activity android:name=".ActivityThree" />
         <activity android:name=".ActivityFour" />
-
-
     </application>
 
 </manifest>

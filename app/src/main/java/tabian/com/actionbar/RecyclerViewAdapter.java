@@ -23,6 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+        void onDeleteClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -73,17 +74,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
+    public Book getBookAt(int position){
+        return mData.get(position);
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView book_name;
         private TextView book_author;
         private ImageView book_cover;
-        private ImageView delete_button;
+        static ImageView delete_button;
         private ImageView add_to_returned_button;
         private ImageView add_to_not_returned;
 
 
+
+
         public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
+
+            final Tab1Fragment tab1Fragment = new Tab1Fragment();
 
             book_name = itemView.findViewById(R.id.bookname_listview);
             book_author = itemView.findViewById(R.id.bookauthor_listview);
@@ -104,6 +113,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 }
             });
+
+            delete_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+
+                        }
+                    }
+
+
+
+                }
+            });
+        }
+
+
+        public ImageView getDelete_button() {
+            return delete_button;
         }
     }
 
