@@ -26,7 +26,7 @@ public class BookInformation2 extends AppCompatActivity {
 */
         TextView Btitle1 = findViewById(R.id.book_title);
         TextView Bauthor1 = findViewById(R.id.author);
-        ImageView Bcover1 = findViewById(R.id.book_Cover);
+        ImageView Bcover1 = findViewById(R.id.book_Cover2);
         ImageButton Bback = findViewById(R.id.bookinfo_back);
 
         Btitle1.setText(Btitle);

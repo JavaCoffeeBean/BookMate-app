@@ -59,9 +59,9 @@ public class Tab2Fragment extends Fragment {
                 String novelAuthor2 = recyclerViewAdapter2.getBookAt(position).getBookauthor();
                 byte[] novelCover2 = recyclerViewAdapter2.getBookAt(position).getBookcover();
 
-                BookInformationActivity.Btitle = novelTitle2;
-                BookInformationActivity.Bauthor=  novelAuthor2;
-                BookInformationActivity.Bcover = novelCover2;
+                BookInformation2.Btitle = novelTitle2;
+                BookInformation2.Bauthor=  novelAuthor2;
+                BookInformation2.Bcover = novelCover2;
 
 
                 Intent activity2Intent = new Intent(getActivity(), BookInformation2.class);

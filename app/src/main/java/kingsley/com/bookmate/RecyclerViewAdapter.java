@@ -24,6 +24,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public interface OnItemClickListener {
         void onItemClick(int position);
         void onDeleteClick(int position);
+        void onAddClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -82,7 +83,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView book_name;
         private TextView book_author;
         private ImageView book_cover;
-        static ImageView delete_button;
+        private ImageView delete_button;
         private ImageView add_to_returned_button;
         private ImageView add_to_not_returned;
 
@@ -129,6 +130,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 }
             });
+
         }
 
 

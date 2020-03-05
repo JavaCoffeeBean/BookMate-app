@@ -83,6 +83,12 @@ public class Tab1Fragment extends Fragment {
                 Toast.makeText(getContext(), "Book Deleted", Toast.LENGTH_SHORT).show();
 
             }
+
+            @Override
+            public void onAddClick(int position) {
+              /*  Tab2Fragment.bookViewModel2.insert2(recyclerViewAdapter.getBookAt(position));*/
+
+            }
         });
 
 
