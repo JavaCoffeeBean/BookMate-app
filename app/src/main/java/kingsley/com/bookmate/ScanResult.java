@@ -203,7 +203,7 @@ public class ScanResult extends AppCompatActivity {
 
 
 
-        Book book = new Book(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle_red, priority);
+        Book book = new Book(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle, priority);
         bv.insert(book);
 
         Toast.makeText(this, "Added to Returned", Toast.LENGTH_SHORT).show();

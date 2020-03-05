@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BookInformationActivity extends AppCompatActivity {
+public class BookInformation2 extends AppCompatActivity {
     static String Btitle;
     static String Bauthor;
     static byte[] Bcover;
@@ -17,7 +17,7 @@ public class BookInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_info);
+        setContentView(R.layout.book_info2);
 
         /*Intent intent = getIntent();
         String TItle = intent.getStringExtra(Tab1Fragment.EXTRA_TITLE);
@@ -37,7 +37,7 @@ public class BookInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent activity2Intent2 = new Intent(BookInformationActivity.this, MainActivity.class);
+                Intent activity2Intent2 = new Intent(BookInformation2.this, MainActivity.class);
                 startActivity(activity2Intent2);
             }
         });
@@ -45,5 +45,4 @@ public class BookInformationActivity extends AppCompatActivity {
 
 
     }
-
 }

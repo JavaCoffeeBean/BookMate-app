@@ -55,7 +55,16 @@ public class Tab2Fragment extends Fragment {
         recyclerViewAdapter2.setOnItemClickListener(new RecyclerViewAdapter2.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent activity2Intent = new Intent(getActivity(), BookInformationActivity.class);
+                String novelTitle2 = recyclerViewAdapter2.getBookAt(position).getBookname();
+                String novelAuthor2 = recyclerViewAdapter2.getBookAt(position).getBookauthor();
+                byte[] novelCover2 = recyclerViewAdapter2.getBookAt(position).getBookcover();
+
+                BookInformationActivity.Btitle = novelTitle2;
+                BookInformationActivity.Bauthor=  novelAuthor2;
+                BookInformationActivity.Bcover = novelCover2;
+
+
+                Intent activity2Intent = new Intent(getActivity(), BookInformation2.class);
                 startActivity(activity2Intent);
             }
 
