@@ -1,4 +1,4 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     public static final int ADD_BOOK_REQUEST = 1;
     private ScanActivity scanActivity;
+
 
     View v;
     private RecyclerView myreturned_recyclerview;
@@ -60,6 +62,17 @@ public class Tab1Fragment extends Fragment {
         recyclerViewAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
+
+                String novelTitle = recyclerViewAdapter.getBookAt(position).getBookname();
+                String novelAuthor = recyclerViewAdapter.getBookAt(position).getBookauthor();
+                byte[] novelCover = recyclerViewAdapter.getBookAt(position).getBookcover();
+
+                BookInformationActivity.Btitle = novelTitle;
+                BookInformationActivity.Bauthor=  novelAuthor;
+                BookInformationActivity.Bcover = novelCover;
+
+
                 Intent activity2Intent = new Intent(getActivity(), BookInformationActivity.class);
                 startActivity(activity2Intent);
             }
@@ -67,6 +80,7 @@ public class Tab1Fragment extends Fragment {
             @Override
             public void onDeleteClick(int position) {
                 bookViewModel.delete(recyclerViewAdapter.getBookAt(position));
+                Toast.makeText(getContext(), "Book Deleted", Toast.LENGTH_SHORT).show();
 
             }
         });

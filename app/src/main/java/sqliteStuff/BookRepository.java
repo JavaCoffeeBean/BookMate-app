@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import tabian.com.actionbar.Book;
-import tabian.com.actionbar.Book2;
+import kingsley.com.bookmate.Book;
+import kingsley.com.bookmate.Book2;
 
 public class BookRepository {
     private BookDao bookDao;

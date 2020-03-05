@@ -1,4 +1,4 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 import android.Manifest;
 import android.content.Context;
@@ -114,15 +114,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
                         break;
 
-                    case R.id.ic_reminders:
-                        Intent intent1 = new Intent(MainActivity.this, ActivityOne.class);
-                        startActivity(intent1);
-                        break;
-
-                    case R.id.ic_settings:
-                        Intent intent2 = new Intent(MainActivity.this, ActivityTwo.class);
-                        startActivity(intent2);
-                        break;
 
                 }
 

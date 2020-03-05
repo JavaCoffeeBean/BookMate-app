@@ -1,11 +1,10 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "book_table")
-public class Book {
-
+@Entity(tableName = "book_table2")
+public class Book2 {
     @PrimaryKey(autoGenerate = true)
     private int Id;
 
@@ -17,16 +16,16 @@ public class Book {
     private int Addnotreturned;
     private int Priority;
 
-    public Book() {
+    public Book2() {
 
     }
 
-    public Book(String bookname, String bookauthor, byte[] bookcover, int delete, int addnotreturned, int priority) {
+    public Book2(String bookname, String bookauthor, byte[] bookcover, int delete, int addreturned, int priority) {
         this.Bookname = bookname;
         this.Bookauthor = bookauthor;
         this.Bookcover = bookcover;
         this.Delete = delete;
-        this.Addnotreturned = addnotreturned;
+        this.Addreturned = addreturned;
         this.Priority = priority;
     }
 
@@ -49,20 +48,20 @@ public class Book {
         return Delete;
     }
 
-    public int getAddreturned() {
-        return Addreturned;
+    public int getAddnotreturned() {
+        return Addnotreturned;
     }
 
     public int getId() {
         return Id;
     }
 
-    public int getPriority() {
-        return Priority;
+    public int getAddreturned() {
+        return Addreturned;
     }
 
-    public int getAddnotreturned() {
-        return Addnotreturned;
+    public int getPriority() {
+        return Priority;
     }
 
     //setter
@@ -84,16 +83,16 @@ public class Book {
         Delete = delete;
     }
 
-    public void setAddreturned(int addreturned) {
-        Addreturned = addreturned;
-    }
-
     public void setAddnotreturned(int addnotreturned) {
         Addnotreturned = addnotreturned;
     }
 
     public void setId(int id) {
         Id = id;
+    }
+
+    public void setAddreturned(int addreturned) {
+        Addreturned = addreturned;
     }
 
     public void setPriority(int priority) {

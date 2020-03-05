@@ -9,8 +9,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import tabian.com.actionbar.Book;
-import tabian.com.actionbar.Book2;
+import kingsley.com.bookmate.Book;
+import kingsley.com.bookmate.Book2;
 
 @Database(entities = {Book.class, Book2.class}, version = 2)
 public abstract class BookDatabase extends RoomDatabase {

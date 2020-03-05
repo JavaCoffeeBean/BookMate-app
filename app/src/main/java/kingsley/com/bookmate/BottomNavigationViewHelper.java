@@ -1,15 +1,12 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.resources.MaterialResources;
 
 import android.util.Log;
-
-import androidx.annotation.RestrictTo;
 
 import java.lang.reflect.Field;
 

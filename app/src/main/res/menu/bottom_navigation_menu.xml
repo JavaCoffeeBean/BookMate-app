@@ -8,19 +8,6 @@
         android:title="Home"
         />
 
-        <item
-            android:id="@+id/ic_reminders"
-            android:icon="@drawable/ic_reminders_black_24dp"
-            android:title="Reminders"
-            />
-        <item
-            android:id="@+id/ic_settings"
-            android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Settings"
-            />
-
-
-
 
 
 </menu>

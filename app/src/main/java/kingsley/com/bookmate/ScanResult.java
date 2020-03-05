@@ -1,4 +1,4 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,8 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,13 +40,14 @@ public class ScanResult extends AppCompatActivity {
     private Tab1Fragment tab1Fragment;
     private Button add_returned;
     private Button add_not_returned;
+    private ImageButton back_button;
     private TextView book_title;
     private TextView book_author;
     private String cover_art;
     private ImageView book_cover;
     private RequestQueue mQueue;
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "ScanResult";
 
 
     @Override
@@ -56,6 +59,7 @@ public class ScanResult extends AppCompatActivity {
         book_cover = findViewById(R.id.book_Cover);
         add_returned = findViewById(R.id.addy);
         add_not_returned = findViewById(R.id.addNotReturned);
+        back_button = findViewById(R.id.back_button);
 
 
         mQueue = Volley.newRequestQueue(this);
@@ -168,6 +172,16 @@ public class ScanResult extends AppCompatActivity {
         });
 
 
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activity2Intent = new Intent(ScanResult.this, MainActivity.class);
+                startActivity(activity2Intent);
+            }
+        });
+
+
+
         add_not_returned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,6 +205,8 @@ public class ScanResult extends AppCompatActivity {
 
         Book book = new Book(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle_red, priority);
         bv.insert(book);
+
+        Toast.makeText(this, "Added to Returned", Toast.LENGTH_SHORT).show();
 
      /*   for (Book bookEntries : bookViewModel.getAllBooks().getValue()) {
             Log.d(TAG, "$$$$$$CASHINA$$$$$$$");
@@ -218,6 +234,8 @@ public class ScanResult extends AppCompatActivity {
 
         Book2 book = new Book2(bookTitle, bookAuthor, bookCoverByte, R.drawable.trash, R.drawable.add_circle, priority);
         bv.insert2(book);
+
+        Toast.makeText(this, "Added to Not-Returned", Toast.LENGTH_SHORT).show();
 
      /*   for (Book bookEntries : bookViewModel.getAllBooks().getValue()) {
             Log.d(TAG, "$$$$$$CASHINA$$$$$$$");

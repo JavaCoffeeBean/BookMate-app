@@ -1,14 +1,16 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Created by User on 4/15/2017.
@@ -39,14 +41,7 @@ public class ActivityTwo extends AppCompatActivity {
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_reminders:
-                        Intent intent1 = new Intent(ActivityTwo.this, ActivityOne.class);
-                        startActivity(intent1);
-                        break;
 
-                    case R.id.ic_settings:
-
-                        break;
 
                 }
 

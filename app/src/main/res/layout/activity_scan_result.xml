@@ -23,6 +23,7 @@
             android:textSize="20sp"/>
 
         <ImageButton
+            android:id="@+id/back_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_arrow_back_black_24dp"
@@ -36,7 +37,7 @@
         android:id="@+id/book_Cover"
         android:layout_width="166dp"
         android:layout_height="270dp"
-        android:src="@drawable/test_cover"
+        android:src="@drawable/noimage"
         android:layout_below="@id/title_parent"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"/>
@@ -53,7 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Their Eyes Were Watching God"
+            android:hint="Title"
+            android:textColorHint="@color/colorWhite"
+            android:text=""
             android:textSize="20sp"
             android:textColor="@color/white" />
 
@@ -61,7 +64,8 @@
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zora Hurston"
+            android:hint="Author"
+            android:text=""
             android:textColor="@color/author_color"
             android:layout_below="@id/book_title"
             android:layout_centerHorizontal="true"

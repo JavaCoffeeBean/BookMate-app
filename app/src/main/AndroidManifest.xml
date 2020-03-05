@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tabian.com.actionbar">
+    package="kingsley.com.bookmate">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -16,15 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".BookInformationActivity"
+            android:name="kingsley.com.bookmate.BookInformationActivity"
             android:label="@string/title_activity_book_information"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ScanResult"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".ScanActivity" />
+            android:name="kingsley.com.bookmate.ScanResult"
+            android:parentActivityName="kingsley.com.bookmate.MainActivity" />
+        <activity android:name="kingsley.com.bookmate.ScanActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="kingsley.com.bookmate.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,10 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityOne" />
-        <activity android:name=".ActivityTwo" />
-        <activity android:name=".ActivityThree" />
-        <activity android:name=".ActivityFour" />
+        <activity android:name="kingsley.com.bookmate.ActivityOne" />
+        <activity android:name="kingsley.com.bookmate.ActivityTwo" />
+        <activity android:name="kingsley.com.bookmate.ActivityThree" />
+        <activity android:name="kingsley.com.bookmate.ActivityFour" />
     </application>
 
 </manifest>

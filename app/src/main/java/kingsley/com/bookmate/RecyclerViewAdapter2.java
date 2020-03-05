@@ -1,4 +1,4 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,10 +16,20 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     Context mContext;
     List<Book2> mData2;
+    private OnItemClickListener mListener;
 
     public RecyclerViewAdapter2(Context mContext, List<Book2> mData) {
         this.mContext = mContext;
         this.mData2 = mData;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(RecyclerViewAdapter2.OnItemClickListener listener) {
+        mListener = listener;
     }
 
     @NonNull
@@ -27,7 +37,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.returned_listitem, parent, false);
-        MyViewHolder vHolder = new MyViewHolder(v);
+        MyViewHolder vHolder = new MyViewHolder(v, mListener);
         return vHolder;
     }
 
@@ -58,6 +68,10 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
         notifyDataSetChanged();
     }
 
+    public Book2 getBookAt(int position){
+        return mData2.get(position);
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView book_name;
         private TextView book_author;
@@ -67,7 +81,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
         private ImageView add_to_not_returned;
 
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, final RecyclerViewAdapter2.OnItemClickListener listener) {
             super(itemView);
 
             book_name = itemView.findViewById(R.id.bookname_listview2);
@@ -76,6 +90,36 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
             delete_button = itemView.findViewById(R.id.delete_button2);
             /*add_to_not_returned = itemView.findViewById(R.id.);*/
             add_to_not_returned = itemView.findViewById(R.id.add_to_notreturned_button2);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+
+                }
+            });
+
+            delete_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+
+                        }
+                    }
+
+
+
+                }
+            });
         }
     }
 

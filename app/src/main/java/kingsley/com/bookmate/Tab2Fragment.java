@@ -1,11 +1,13 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -46,6 +48,22 @@ public class Tab2Fragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Book2> bookEntries) {
                 recyclerViewAdapter2.setBookEntries2(bookEntries);
+            }
+        });
+
+
+        recyclerViewAdapter2.setOnItemClickListener(new RecyclerViewAdapter2.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent activity2Intent = new Intent(getActivity(), BookInformationActivity.class);
+                startActivity(activity2Intent);
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                bookViewModel2.delete2(recyclerViewAdapter2.getBookAt(position));
+                Toast.makeText(getContext(), "Book Deleted", Toast.LENGTH_SHORT).show();
+
             }
         });
 

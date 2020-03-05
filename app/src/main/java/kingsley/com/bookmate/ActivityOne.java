@@ -1,33 +1,35 @@
-package tabian.com.actionbar;
+package kingsley.com.bookmate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Created by User on 4/15/2017.
  */
 
-public class ActivityThree extends AppCompatActivity {
+public class ActivityOne extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_three);
+        setContentView(R.layout.activity_one);
 
-        TextView title = (TextView) findViewById(R.id.activityTitle3);
-        title.setText("This is ActivityThree");
+        TextView title = (TextView) findViewById(R.id.activityTitle1);
+        title.setText("This is ActivityOne");
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(3);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,19 +37,10 @@ public class ActivityThree extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_home:
-                        Intent intent0 = new Intent(ActivityThree.this, MainActivity.class);
+                        Intent intent0 = new Intent(ActivityOne.this, MainActivity.class);
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_reminders:
-                        Intent intent1 = new Intent(ActivityThree.this, ActivityOne.class);
-                        startActivity(intent1);
-                        break;
-
-                    case R.id.ic_settings:
-                        Intent intent2 = new Intent(ActivityThree.this, ActivityTwo.class);
-                        startActivity(intent2);
-                        break;
 
                 }
 
