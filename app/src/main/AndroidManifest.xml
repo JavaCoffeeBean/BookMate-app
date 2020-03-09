@@ -36,10 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="kingsley.com.bookmate.ActivityOne" />
-        <activity android:name="kingsley.com.bookmate.ActivityTwo" />
-        <activity android:name="kingsley.com.bookmate.ActivityThree" />
-        <activity android:name="kingsley.com.bookmate.ActivityFour" />
     </application>
 
 </manifest>

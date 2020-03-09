@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ActionBar</string>
+    <string name="app_name">BookMate</string>
     <string name="book_title">Their Eyes Were Watching God</string>
     <string name="title_activity_book_information">BookInformationActivity</string>
 </resources>
